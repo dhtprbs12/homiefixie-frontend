@@ -16,7 +16,7 @@ export interface QuestionSet {
 // Function to generate dynamic follow-up questions using OpenAI
 export async function generateFollowUpQuestions(description: string): Promise<QuestionSet | null> {
   try {
-    const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:4000';
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
     const response = await fetch(`${API_URL}/api/generate-questions`, {
       method: 'POST',
       headers: {
