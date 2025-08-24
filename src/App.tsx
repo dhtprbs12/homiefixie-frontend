@@ -4,6 +4,8 @@ import { FollowUpQuestions } from './components/FollowUpQuestions';
 import { generateFollowUpQuestions, formatFollowUpAnswers, QuestionSet } from './followUpQuestions';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+console.log('Environment variables:', import.meta.env);
+console.log('API_URL being used:', API_URL);
 
 function App() {
   const [description, setDescription] = useState('');
