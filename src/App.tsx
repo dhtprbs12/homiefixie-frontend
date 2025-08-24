@@ -178,34 +178,7 @@ function App() {
     return videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : null;
   };
 
-  const [youtubeValid, setYoutubeValid] = useState<boolean | null>(null);
 
-  const validateYouTubeLink = async (url: string) => {
-    const videoId = getYouTubeVideoId(url);
-    if (!videoId) {
-      setYoutubeValid(false);
-      return;
-    }
-
-    try {
-      // Check if thumbnail loads (simple validation)
-      const img = new Image();
-      img.onload = () => setYoutubeValid(true);
-      img.onerror = () => setYoutubeValid(false);
-      img.src = `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
-    } catch (error) {
-      setYoutubeValid(false);
-    }
-  };
-
-  // Validate YouTube link when result changes
-  React.useEffect(() => {
-    if (result?.youtube_url) {
-      validateYouTubeLink(result.youtube_url);
-    } else {
-      setYoutubeValid(null);
-    }
-  }, [result?.youtube_url]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
@@ -682,16 +655,16 @@ function App() {
                   )}
 
                   {/* YouTube Tutorials */}
-                  {(result.youtube_videos?.length > 0 || result.youtube_url) && (
+                  {(result.youtube_videos?.length && result.youtube_videos.length > 0 || result.youtube_url) && (
                     <div>
                       <h3 className="text-md font-medium text-gray-900 mb-3">
-                        {result.youtube_videos?.length > 1 ? 'Video Tutorials' : 'Video Tutorial'}
+                        {result.youtube_videos && result.youtube_videos.length > 1 ? 'Video Tutorials' : 'Video Tutorial'}
                       </h3>
                       
                       {/* Multiple YouTube Videos */}
-                      {result.youtube_videos?.length > 0 ? (
+                      {result.youtube_videos && result.youtube_videos.length > 0 ? (
                         <div className="space-y-3">
-                          {result.youtube_videos.map((video, index) => (
+                          {result.youtube_videos!.map((video) => (
                             <div key={video.url} className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                               <div className="flex items-start space-x-4">
                                 {/* YouTube Thumbnail */}
