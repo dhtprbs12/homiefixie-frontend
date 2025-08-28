@@ -87,15 +87,8 @@ function App() {
 
     try {
       const formData = new FormData();
-      let fullDescription = desc.trim();
-      
-      // Append follow-up answers to description if provided
-      if (followUpAnswers) {
-        fullDescription += formatFollowUpAnswers(followUpAnswers);
-      }
-      
-      if (fullDescription) {
-        formData.append('description', fullDescription);
+      if (desc.trim()) {
+        formData.append('description', desc.trim());
       }
       if (uploadedFile) {
         formData.append('image', uploadedFile);
