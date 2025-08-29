@@ -91,7 +91,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">Email Us</h3>
-                    <p className="text-gray-600">support@homiefixie.com</p>
+                    <p className="text-gray-600">seefarcompany12@gmail.com</p>
                     <p className="text-sm text-gray-500 mt-1">We typically respond within 24 hours</p>
                   </div>
                 </div>
