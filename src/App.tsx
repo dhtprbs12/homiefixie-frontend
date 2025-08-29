@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnalyzeResponse, Ticket } from './types';
 import { FollowUpQuestions } from './components/FollowUpQuestions';
-import { generateFollowUpQuestions, formatFollowUpAnswers, QuestionSet } from './followUpQuestions';
+import { generateFollowUpQuestions, QuestionSet } from './followUpQuestions';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 console.log('Environment variables:', import.meta.env);
@@ -80,7 +80,7 @@ function App() {
     await performAnalysis(description, file);
   };
 
-  const performAnalysis = async (desc: string, uploadedFile: File | null, followUpAnswers?: Record<string, string>) => {
+  const performAnalysis = async (desc: string, uploadedFile: File | null) => {
     setIsLoading(true);
     setError('');
     setResult(null);
@@ -122,9 +122,9 @@ function App() {
     }
   };
 
-  const handleFollowUpSubmit = (answers: Record<string, string>) => {
+  const handleFollowUpSubmit = (_answers: Record<string, string>) => {
     if (initialAnalysis) {
-      performAnalysis(initialAnalysis.description, initialAnalysis.file, answers);
+      performAnalysis(initialAnalysis.description, initialAnalysis.file);
     }
   };
 
