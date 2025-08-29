@@ -296,9 +296,12 @@ function App() {
                   className="btn-primary w-full text-base sm:text-lg py-4"
                 >
                   {isLoading ? (
-                    <span className="flex items-center justify-center">
-                      <div className="loading-spinner mr-3"></div>
-                      Analyzing your issue...
+                    <span className="flex flex-col items-center justify-center">
+                      <div className="flex items-center">
+                        <div className="loading-spinner mr-3"></div>
+                        Analyzing your issue...
+                      </div>
+                      <div className="text-xs opacity-75 mt-1">May take ~20 seconds</div>
                     </span>
                   ) : generatingQuestions ? (
                     <span className="flex items-center justify-center">
@@ -369,7 +372,8 @@ function App() {
                   </div>
                   <div className="text-center">
                     <div className="text-lg sm:text-xl font-semibold text-gray-800 mb-2">Analyzing your home issue...</div>
-                    <div className="text-sm sm:text-base text-gray-600 mb-4">Our AI is gathering materials, tools, and step-by-step instructions</div>
+                    <div className="text-sm sm:text-base text-gray-600 mb-2">Our AI is gathering materials, tools, and step-by-step instructions</div>
+                    <div className="text-xs text-gray-500 mb-4">This may take about 20 seconds</div>
                     <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
                       <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce"></div>
                       <div className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
