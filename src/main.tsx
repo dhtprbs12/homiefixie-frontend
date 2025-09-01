@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import App from './App.tsx'
+import About from './pages/About.tsx'
 import HowItWorks from './pages/HowItWorks.tsx'
 import Contact from './pages/Contact.tsx'
 import Privacy from './pages/Privacy.tsx'
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/about" element={<About />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
