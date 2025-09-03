@@ -60,3 +60,12 @@ export interface Ticket {
     created_at: string;
   };
 }
+
+export interface Feedback {
+  id: number;
+  ticket_id: number;
+  feedback_type: 'helpful' | 'not-helpful';
+  feedback_text?: string;
+  user_email?: string;
+  created_at: string;
+}

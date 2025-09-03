@@ -7,6 +7,7 @@ import HowItWorks from './pages/HowItWorks.tsx'
 import Contact from './pages/Contact.tsx'
 import Privacy from './pages/Privacy.tsx'
 import Disclaimer from './pages/Disclaimer.tsx'
+import Admin from './pages/Admin.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/disclaimer" element={<Disclaimer />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   </React.StrictMode>,
