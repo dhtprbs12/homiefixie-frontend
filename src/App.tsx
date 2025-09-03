@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AnalyzeResponse, Ticket } from './types';
+import { AnalyzeResponse } from './types';
 import { FollowUpQuestions } from './components/FollowUpQuestions';
 import { generateFollowUpQuestions, QuestionSet } from './followUpQuestions';
 
@@ -13,7 +13,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const [error, setError] = useState('');
-  const [tickets, setTickets] = useState<Ticket[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   const [showFollowUp, setShowFollowUp] = useState(false);
   const [followUpQuestions, setFollowUpQuestions] = useState<QuestionSet | null>(null);
@@ -28,10 +27,6 @@ function App() {
   const [followUpLoading, setFollowUpLoading] = useState(false);
   const [followUpAnswer, setFollowUpAnswer] = useState<string | null>(null);
 
-  // Load tickets on mount
-  useEffect(() => {
-    fetchTickets();
-  }, []);
 
   // Handle file preview
   useEffect(() => {
@@ -44,17 +39,6 @@ function App() {
     }
   }, [file]);
 
-  const fetchTickets = async () => {
-    try {
-      const response = await fetch(`${API_URL}/api/tickets`);
-      if (response.ok) {
-        const data = await response.json();
-        setTickets(data.slice(0, 20)); // Show last 20
-      }
-    } catch (error) {
-      console.error('Failed to fetch tickets:', error);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,7 +95,6 @@ function App() {
 
       if (response.ok) {
         setResult(data);
-        fetchTickets(); // Refresh tickets
         
         // Reset form and follow-up state
         setDescription('');
@@ -265,7 +248,7 @@ function App() {
 
     try {
       // Create a summary of the original analysis for context
-      const originalAnalysis = `Project: ${result.description || 'Home improvement project'}
+      const originalAnalysis = `Project: Home improvement project
       
 Materials: ${result.materials?.map(m => m.name).join(', ') || 'Various materials'}
 Tools: ${result.tools?.map(t => t.name).join(', ') || 'Various tools'}
