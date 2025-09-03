@@ -1,0 +1,24 @@
+{
+    "name": "HomieFixie - Home Improvement Assistant",
+    "short_name": "HomieFixie",
+    "description": "AI-powered home improvement and DIY repair guidance",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/favicon.ico",
+            "sizes": "32x32",
+            "type": "image/x-icon"
+        }
+    ],
+    "theme_color": "#3B82F6",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/",
+    "lang": "en-US",
+    "categories": ["utilities", "productivity", "education"]
+}
