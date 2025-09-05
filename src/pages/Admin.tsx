@@ -222,7 +222,7 @@ export default function Admin() {
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-semibold text-gray-900">Tickets ({filteredTickets.length})</h2>
             </div>
-            <div className="max-h-96 overflow-y-auto">
+            <div className="max-h-[600px] overflow-y-auto">
               {filteredTickets.length === 0 ? (
                 <div className="p-6 text-center text-gray-500">
                   No tickets found
@@ -259,9 +259,47 @@ export default function Admin() {
                           </span>
                         </div>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                         {ticket.description}
                       </p>
+                      
+                      {/* Materials and Tools Summary */}
+                      {ticket.latest_analysis ? (
+                        <div className="mb-3 space-y-2">
+                          {ticket.latest_analysis.materials && ticket.latest_analysis.materials.length > 0 && (
+                            <div className="text-xs">
+                              <span className="font-medium text-blue-700">Materials:</span>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                {ticket.latest_analysis.materials.map((material, idx) => (
+                                  <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-blue-50 text-blue-800 border border-blue-200">
+                                    {material.name}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {ticket.latest_analysis.tools && ticket.latest_analysis.tools.length > 0 && (
+                            <div className="text-xs">
+                              <span className="font-medium text-purple-700">Tools:</span>
+                              <div className="mt-1 flex flex-wrap gap-1">
+                                {ticket.latest_analysis.tools.map((tool, idx) => (
+                                  <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-purple-50 text-purple-800 border border-purple-200">
+                                    {tool.name}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="mb-3">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-gray-100 text-gray-600">
+                            No analysis available
+                          </span>
+                        </div>
+                      )}
+                      
                       <div className="text-xs text-gray-500">
                         {ticket.user_email && (
                           <span className="mr-4">{ticket.user_email}</span>
@@ -282,7 +320,7 @@ export default function Admin() {
                 {selectedTicket ? `Feedback for Ticket #${selectedTicket.id}` : `All Feedback (${filteredFeedback.length})`}
               </h2>
             </div>
-            <div className="max-h-96 overflow-y-auto">
+            <div className="max-h-[600px] overflow-y-auto">
               {(() => {
                 const feedbackToShow = selectedTicket 
                   ? getTicketFeedback(selectedTicket.id)
