@@ -39,6 +39,24 @@ function App() {
     }
   }, [file]);
 
+  const createEnhancedDescription = (originalDescription: string, answers: Record<string, string>): string => {
+    if (!answers || Object.keys(answers).length === 0) {
+      return originalDescription;
+    }
+
+    let enhancedDescription = originalDescription;
+    
+    const answerEntries = Object.entries(answers).filter(([_, value]) => value && value.trim() !== '');
+    
+    if (answerEntries.length > 0) {
+      enhancedDescription += "\n\nAdditional Details:\n";
+      answerEntries.forEach(([_, answer]) => {
+        enhancedDescription += `- ${answer}\n`;
+      });
+    }
+    
+    return enhancedDescription;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,9 +139,11 @@ function App() {
     }
   };
 
-  const handleFollowUpSubmit = (_answers: Record<string, string>) => {
+  const handleFollowUpSubmit = (answers: Record<string, string>) => {
     if (initialAnalysis) {
-      performAnalysis(initialAnalysis.description, initialAnalysis.file);
+      // Combine original description with follow-up answers
+      const enhancedDescription = createEnhancedDescription(initialAnalysis.description, answers);
+      performAnalysis(enhancedDescription, initialAnalysis.file);
     }
   };
 
